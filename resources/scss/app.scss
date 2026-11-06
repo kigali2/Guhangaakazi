@@ -1,1 +1,10 @@
+$primary: #0b6b3a;
+$dark: #0f1f3d;
+$warning: #e8a317;
 @import "bootstrap/scss/bootstrap";
+.admin-sidebar { background: #0f1f3d; --bs-offcanvas-width: 270px; --bs-offcanvas-bg: #0f1f3d; --bs-offcanvas-color: #fff; }
+@include media-breakpoint-up(lg) { .admin-sidebar { width: 270px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; overflow-y: auto; } }
+.admin-sidebar .nav-link { color: rgba(255,255,255,.8); border-radius: .5rem; padding: .6rem .9rem; }
+.admin-sidebar .nav-link.active { background: #0b6b3a; color: #fff; }
+.admin-sidebar .nav-link.disabled { opacity: .45; }
+.stat-card { border: 0; border-left: 4px solid var(--bs-primary); box-shadow: 0 1px 3px rgba(0,0,0,.08); }

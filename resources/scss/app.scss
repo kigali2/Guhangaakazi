@@ -8,3 +8,51 @@ $warning: #e8a317;
 .admin-sidebar .nav-link.active { background: #0b6b3a; color: #fff; }
 .admin-sidebar .nav-link.disabled { opacity: .45; }
 .stat-card { border: 0; border-left: 4px solid var(--bs-primary); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+
+.site-nav { background: #0f1f3d; }
+.site-nav .nav-link { color: rgba(255, 255, 255, 0.85); font-weight: 500; }
+.site-nav .nav-link:hover, .site-nav .nav-link.active { color: #e8a317; }
+.hero { position: relative; color: #fff; min-height: 72vh; display: flex; align-items: center; overflow: hidden; background: linear-gradient(135deg, #0b6b3a, #0f1f3d); }
+.hero .carousel, .hero .carousel-inner, .hero .carousel-item { position: absolute; inset: 0; height: 100%; width: 100%; }
+.hero img.slide { width: 100%; height: 100%; object-fit: cover; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(15, 31, 61, 0.88), rgba(15, 31, 61, 0.45)); }
+.hero-text { position: absolute; inset: 0; display: flex; align-items: center; z-index: 2; }
+.hero-text.static { position: relative; min-height: 72vh; width: 100%; }
+.hero .carousel-control-prev, .hero .carousel-control-next { z-index: 3; width: 8%; }
+.hero .carousel-indicators { z-index: 3; }
+.hero-toggle { position: absolute; right: 1rem; bottom: 1rem; z-index: 4; }
+.page-banner { background: linear-gradient(135deg, #0b6b3a, #0f1f3d); color: #fff; padding: 3rem 0; }
+.item-card { border: 0; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); transition: transform 0.2s, box-shadow 0.2s; overflow: hidden; }
+.item-card:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+.item-card .thumb { height: 190px; object-fit: cover; width: 100%; }
+.thumb-fallback { height: 190px; background: linear-gradient(135deg, #0b6b3a, #0f1f3d); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2.6rem; }
+.why-icon { width: 64px; height: 64px; border-radius: 50%; background: #e7f3ec; color: #0b6b3a; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; }
+.cta-band { background: linear-gradient(135deg, #0b6b3a, #0f1f3d); }
+.site-footer { background: #0f1f3d; color: rgba(255, 255, 255, 0.78); }
+.site-footer a { color: rgba(255, 255, 255, 0.78); text-decoration: none; }
+.site-footer a:hover { color: #e8a317; }
+.social-btn { width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: rgba(255, 255, 255, 0.12); color: #fff !important; font-size: 1.2rem; transition: background 0.2s; }
+.social-btn:hover { background: #e8a317; }
+.social-btn.dark { background: #0f1f3d; width: 38px; height: 38px; font-size: 1rem; }
+.contact-card { display: flex; flex-direction: column; align-items: center; gap: 0.6rem; padding: 1.6rem 1rem; border-radius: 1rem; background: #fff; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08); text-decoration: none; color: #0f1f3d; font-weight: 600; transition: transform 0.2s; }
+.contact-card:hover { transform: translateY(-4px); color: #0f1f3d; }
+.contact-card i { font-size: 2.4rem; }
+.reading { font-size: 1.05rem; line-height: 1.75; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background: #0b6b3a; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+.avatar.sm { width: 32px; height: 32px; font-size: 0.85rem; }
+@media (prefers-reduced-motion: reduce) {
+    .carousel-item, .item-card, .contact-card { transition: none !important; }
+}
+
+.act-btn { background: none; border: 0; padding: 0.3rem 0.6rem; color: #6c757d; border-radius: 0.5rem; font-size: 0.95rem; transition: background 0.15s, color 0.15s; }
+.act-btn:hover { background: #f1f3f5; color: #0f1f3d; }
+.act-btn.on { color: #dc3545; }
+.act-static { color: #6c757d; padding: 0.3rem 0.6rem; font-size: 0.95rem; }
+
+.photo-open { display: block; width: 100%; padding: 0; border: 0; background: none; }
+.photo-open img { width: 100%; height: 230px; object-fit: cover; cursor: zoom-in; }
+.video-box { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; }
+.embed-open { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; background: #0f1f3d; cursor: pointer; }
+.embed-open img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.play-badge { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: rgba(0, 0, 0, 0.65); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+.embed-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }

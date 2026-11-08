@@ -184,7 +184,7 @@ class ContentController extends Controller
 
         $data['is_featured'] = $request->boolean('is_featured');
 
-        if ($data['status'] === 'published' && empty($data['published_at'])) {
+        if ($data['status'] === 'published' && empty($data['published_at']) && ! ($item && $item->published_at)) {
             $data['published_at'] = now();
         }
 

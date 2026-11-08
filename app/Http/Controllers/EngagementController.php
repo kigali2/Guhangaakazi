@@ -82,7 +82,7 @@ class EngagementController extends Controller
     {
         $item = $this->item($type, $id);
         $data = $request->validate([
-            'name' => 'required|string|max:80',
+            'name' => 'nullable|string|max:80',
             'email' => 'nullable|email|max:150',
             'body' => 'required|string|min:2|max:1500',
             'parent_id' => 'nullable|integer',
@@ -94,7 +94,7 @@ class EngagementController extends Controller
         }
 
         $comment = $item->comments()->create([
-            'name' => strip_tags($data['name']),
+            'name' => strip_tags($data['name'] ?? '') ?: 'Visitor',
             'email' => $data['email'] ?? null,
             'body' => strip_tags($data['body']),
             'parent_id' => $data['parent_id'] ?? null,

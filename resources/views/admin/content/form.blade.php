@@ -116,8 +116,6 @@
                     </select>
                 </div>
                 <div class="col-12 col-md-4">
-                    <label class="form-label" for="f_pub">Publish date (optional, a future date schedules it)</label>
-                    <input id="f_pub" type="datetime-local" name="published_at" value="{{ $publishedAt }}" class="form-control @error('published_at') is-invalid @enderror">
                     @error('published_at')<div class="invalid-feedback">{{ $message }}</div>@enderror
                 </div>
                 <div class="col-12 col-md-4 d-flex align-items-end">

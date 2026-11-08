@@ -46,6 +46,7 @@
                     <div class="small text-muted mt-2">{{ number_format($item->views_count) }} views, {{ number_format($item->likes_count) }} likes, {{ number_format($item->comments_count) }} comments</div>
                     <div class="d-flex flex-wrap gap-1 mt-3">
                         <a href="{{ route('admin.' . $res . '.edit', $item->id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        @if ($item->status === "published")<a href="{{ route("site.".$res.".show", $item->slug) }}" target="_blank" class="btn btn-sm btn-outline-secondary">View on website</a>@endif
                         <form method="POST" action="{{ route('admin.' . $res . '.publish', $item->id) }}">
                             @csrf
                             <button class="btn btn-sm btn-outline-success">{{ $item->status === 'published' ? 'Unpublish' : 'Publish' }}</button>

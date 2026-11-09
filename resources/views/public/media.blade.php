@@ -8,13 +8,6 @@
     $shareText = urlencode($item->title);
 @endphp
 <div class="container py-4 py-lg-5">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('site.home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('site.' . $res . '.index') }}">{{ $label }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ $item->title }}</li>
-        </ol>
-    </nav>
 
     <div class="row g-4">
         <div class="col-12 col-lg-8">

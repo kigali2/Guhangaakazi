@@ -38,6 +38,7 @@
         </div>
     @endif
 </section>
+<div class="container py-4"><button type="button" class="search-pill js-open-search w-100 text-start" aria-label="Search the website"><i class="bi bi-search me-2"></i>Search business ideas, skills, opportunities, articles, photos and videos</button></div>
 
 @foreach ($sections as $s)
     <section class="py-5 {{ $loop->even ? 'bg-white' : '' }}">

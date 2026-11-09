@@ -4,24 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>@yield('title', config('site.name')) | {{ config('site.name') }}</title>
-<meta name="description" content="@yield('description', config('site.description'))">
+<title>@yield('title', \App\Models\Setting::get('seo_title', config('site.name'))) | {{ config('site.name') }}</title>
+<meta name="description" content="@yield('description', \App\Models\Setting::get('seo_description', config('site.description')))">
 <link rel="canonical" href="{{ url()->current() }}">
 <meta property="og:site_name" content="{{ config('site.name') }}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="@yield('title', config('site.name'))">
-<meta property="og:description" content="@yield('description', config('site.description'))">
+<meta property="og:title" content="@yield('title', \App\Models\Setting::get('seo_title', config('site.name')))">
+<meta property="og:description" content="@yield('description', \App\Models\Setting::get('seo_description', config('site.description')))">
 <meta property="og:url" content="{{ url()->current() }}">
-@if (trim($__env->yieldContent('image')) !== '')
-<meta property="og:image" content="@yield('image')">
-@endif
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+@include('public.partials.seo-head')
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-xl navbar-dark site-nav sticky-top">
     <div class="container">
         <a class="navbar-brand fw-bold" href="{{ route('site.home') }}"><i class="bi bi-tree-fill text-warning"></i> {{ config('site.name') }}</a>
+        <button type="button" class="btn btn-link text-white ms-auto me-1 ms-xl-2 order-xl-last js-open-search" aria-label="Search"><i class="bi bi-search fs-5"></i></button>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#siteMenu" aria-controls="siteMenu" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="siteMenu">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -68,6 +67,7 @@
 </footer>
 @include('public.partials.card-modal')
 @include('public.partials.media-viewer')
+@include('public.partials.search-overlay')
 @stack('scripts')
 </body>
 </html>

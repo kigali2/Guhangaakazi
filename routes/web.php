@@ -81,3 +81,19 @@ Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAd
 });
 
 Route::get('engage/{type}/{id}/comments', [\App\Http\Controllers\CommentFeedController::class, 'index'])->whereNumber('id')->middleware('throttle:60,1');
+
+Route::get('search', [\App\Http\Controllers\SearchController::class, 'index'])->name('site.search');
+Route::get('search/suggest', [\App\Http\Controllers\SearchController::class, 'suggest'])->middleware('throttle:120,1')->name('site.search.suggest');
+Route::get('robots.txt', [\App\Http\Controllers\SeoFileController::class, 'robots']);
+Route::get('sitemap.xml', [\App\Http\Controllers\SeoFileController::class, 'sitemap']);
+
+Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAdmin::class)->group(function () {
+    Route::get('seo', [\App\Http\Controllers\Admin\SeoController::class, 'index'])->name('seo.index');
+    Route::put('seo', [\App\Http\Controllers\Admin\SeoController::class, 'update'])->name('seo.update');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAdmin::class)->group(function () {
+    Route::get('media', [\App\Http\Controllers\Admin\MediaController::class, 'index'])->name('media.index');
+    Route::post('media/link', [\App\Http\Controllers\Admin\MediaController::class, 'link'])->name('media.link');
+    Route::delete('media/{medium}', [\App\Http\Controllers\Admin\MediaController::class, 'destroy'])->name('media.destroy');
+});

@@ -46,6 +46,7 @@ class SettingsController extends Controller
             $rules[$key] = $field[2];
         }
         $data = $request->validate($rules);
+        foreach ($data as $k => $v) { if ($v && str_ends_with($k, "_content")) { $data[$k] = \App\Support\Html::clean($v); } }
 
         foreach ($data as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);

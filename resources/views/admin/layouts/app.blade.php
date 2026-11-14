@@ -30,7 +30,7 @@
 <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-label="Open menu">Menu</button>
 <span class="fw-semibold d-none d-lg-inline">@yield("title", "Dashboard")</span>
 <div class="dropdown ms-auto">
-<button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">{{ auth()->user()->name }}</button>
+<button class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown">@if (auth()->user()->profile_image_key)<img src="{{ \App\Support\R2::url(auth()->user()->profile_image_key) }}" alt="" class="rounded-circle me-1" width="24" height="24" style="object-fit:cover">@endif{{ auth()->user()->name }}</button>
 <ul class="dropdown-menu dropdown-menu-end">
 <li><span class="dropdown-item-text small text-muted">{{ auth()->user()->email }}</span></li>
 <li><hr class="dropdown-divider"></li>
@@ -42,4 +42,5 @@
 @endif
 @yield("content")
 </main></div></div>
+@include("admin.partials.rte")
 </body></html>

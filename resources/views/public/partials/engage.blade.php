@@ -13,6 +13,7 @@
             <div id="replyNote" class="small text-primary mb-2 d-none"></div>
             <input type="hidden" id="c_parent" value="">
             <div class="row g-2">
+                <div class="col-12"><input type="text" id="c_name" class="form-control" placeholder="Enter your name" maxlength="80" aria-label="Enter your name" autocomplete="name" required></div>
                 <div class="col-12"><textarea id="c_body" rows="3" class="form-control" placeholder="Write a comment" maxlength="1500" aria-label="Comment"></textarea></div>
             </div>
             <div class="d-flex align-items-center gap-2 mt-2">
@@ -96,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     msg.textContent = '';
     var payload = {
+      name: document.getElementById("c_name").value,
       body: document.getElementById('c_body').value,
       parent_id: parent.value ? parseInt(parent.value, 10) : null
     };

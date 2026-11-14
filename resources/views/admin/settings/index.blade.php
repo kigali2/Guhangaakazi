@@ -13,7 +13,7 @@
         <div class="mb-3">
             <label class="form-label" for="st_{{ $key }}">{{ $f[0] }}</label>
             @if ($f[1] === 'textarea')
-                <textarea id="st_{{ $key }}" name="{{ $key }}" rows="{{ in_array($key, ['hero_description']) ? 3 : 6 }}" class="form-control @error($key) is-invalid @enderror">{{ $val }}</textarea>
+                <textarea id="st_{{ $key }}" name="{{ $key }}" rows="{{ in_array($key, ['hero_description']) ? 3 : 6 }}" class="form-control {{ str_ends_with($key, "_content") ? "rte" : "" }} @error($key) is-invalid @enderror">{{ str_ends_with($key, "_content") ? \App\Support\Html::render($val) : $val }}</textarea>
             @else
                 <input id="st_{{ $key }}" type="{{ $f[1] }}" name="{{ $key }}" value="{{ $val }}" class="form-control @error($key) is-invalid @enderror">
             @endif

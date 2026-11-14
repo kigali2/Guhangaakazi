@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="theme-color" content="#0f1f3d">
 <title>@yield('title', \App\Models\Setting::get('seo_title', config('site.name'))) | {{ config('site.name') }}</title>
 <meta name="description" content="@yield('description', \App\Models\Setting::get('seo_description', config('site.description')))">
 <link rel="canonical" href="{{ url()->current() }}">

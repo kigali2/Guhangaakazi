@@ -97,3 +97,33 @@ Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAd
     Route::post('media/link', [\App\Http\Controllers\Admin\MediaController::class, 'link'])->name('media.link');
     Route::delete('media/{medium}', [\App\Http\Controllers\Admin\MediaController::class, 'destroy'])->name('media.destroy');
 });
+
+Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAdmin::class)->group(function () {
+    $links = \App\Http\Controllers\Admin\LinkController::class;
+    Route::get('links', [$links, 'index'])->name('links.index');
+    Route::get('links/create', [$links, 'create'])->name('links.create');
+    Route::post('links', [$links, 'store'])->name('links.store');
+    Route::get('links/{link}/edit', [$links, 'edit'])->name('links.edit');
+    Route::put('links/{link}', [$links, 'update'])->name('links.update');
+    Route::delete('links/{link}', [$links, 'destroy'])->name('links.destroy');
+
+    $profile = \App\Http\Controllers\Admin\ProfileController::class;
+    Route::get('profile', [$profile, 'edit'])->name('profile.edit');
+    Route::put('profile', [$profile, 'update'])->name('profile.update');
+    Route::put('profile/password', [$profile, 'password'])->name('profile.password');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(\App\Http\Middleware\EnsureAdmin::class)->group(function () {
+    $links = \App\Http\Controllers\Admin\LinkController::class;
+    Route::get('links', [$links, 'index'])->name('links.index');
+    Route::get('links/create', [$links, 'create'])->name('links.create');
+    Route::post('links', [$links, 'store'])->name('links.store');
+    Route::get('links/{link}/edit', [$links, 'edit'])->name('links.edit');
+    Route::put('links/{link}', [$links, 'update'])->name('links.update');
+    Route::delete('links/{link}', [$links, 'destroy'])->name('links.destroy');
+
+    $profile = \App\Http\Controllers\Admin\ProfileController::class;
+    Route::get('profile', [$profile, 'edit'])->name('profile.edit');
+    Route::put('profile', [$profile, 'update'])->name('profile.update');
+    Route::put('profile/password', [$profile, 'password'])->name('profile.password');
+});

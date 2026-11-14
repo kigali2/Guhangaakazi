@@ -98,8 +98,8 @@ class SiteTest extends TestCase
         $published = $this->idea('open-idea');
         $draft = $this->idea('closed-idea', 'draft');
 
-        $this->postJson('/engage/business-ideas/' . $published->id . '/comment', ['body' => 'Great idea'])->assertStatus(201);
-        $this->postJson('/engage/business-ideas/' . $draft->id . '/comment', ['body' => 'Hidden idea'])->assertNotFound();
+        $this->postJson('/engage/business-ideas/' . $published->id . '/comment', ['name' => 'Eric', 'body' => 'Great idea'])->assertStatus(201);
+        $this->postJson('/engage/business-ideas/' . $draft->id . '/comment', ['name' => 'Eric', 'body' => 'Hidden idea'])->assertNotFound();
         $this->postJson('/engage/business-ideas/' . $published->id . '/like')->assertOk()->assertJson(['liked' => true, 'likes' => 1]);
     }
 }

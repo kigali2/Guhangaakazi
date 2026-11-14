@@ -19,6 +19,7 @@ class MediaController extends Controller
         'mp4' => ['video', 'video/mp4'],
         'webm' => ['video', 'video/webm'],
         'mov' => ['video', 'video/quicktime'],
+        'pdf' => ['document', 'application/pdf'],
     ];
 
     public function index(Request $request)
@@ -28,7 +29,7 @@ class MediaController extends Controller
         if ($search !== '') {
             $query->where('original_name', 'like', '%' . addcslashes($search, '%_\\') . '%');
         }
-        if (in_array($request->query('type'), ['image', 'video'], true)) {
+        if (in_array($request->query('type'), ['image', 'video', 'document'], true)) {
             $query->where('type', $request->query('type'));
         }
 
@@ -51,7 +52,7 @@ class MediaController extends Controller
 
         $info = self::TYPES[strtolower(pathinfo($key, PATHINFO_EXTENSION))] ?? null;
         if (! $info) {
-            return back()->withInput()->withErrors(['url' => 'Unsupported file type. Use JPG, PNG, WebP, MP4, WebM or MOV.']);
+            return back()->withInput()->withErrors(['url' => 'Unsupported file type. Use JPG, PNG, WebP, MP4, WebM, MOV or PDF.']);
         }
 
         $size = 0;
@@ -96,7 +97,7 @@ class MediaController extends Controller
 
     public function destroy(Request $request, Media $medium)
     {
-        if ($this->inUse($medium->object_key)) {
+        if ($this->inUse($medium->object_key) || DB::table("media_links")->where("media_id", $medium->id)->exists()) {
             return back()->with('error', 'This file is used by website content. Replace it there first.');
         }
 

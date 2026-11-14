@@ -7,6 +7,7 @@
     }
     $schemas = \App\Support\Seo::schemas($item ?? null, $res ?? null, $poster ?? null, $videoUrl ?? null, $embed ?? null);
 @endphp
+@if (request()->routeIs("site.search"))<meta name="robots" content="noindex, follow">@endif
 @if ($gsc)<meta name="google-site-verification" content="{{ $gsc }}">@endif
 @if ($seoImage)
 <meta property="og:image" content="{{ $seoImage }}">

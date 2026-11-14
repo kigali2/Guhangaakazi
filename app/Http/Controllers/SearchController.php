@@ -72,7 +72,7 @@ class SearchController extends Controller
                 $key = match ($type) {
                     'photos' => $m->image_key,
                     'videos' => $m->thumbnail_key,
-                    default => $m->cover_image_key,
+                    default => \App\Support\Linked::featuredKey($m) ?: $m->cover_image_key,
                 };
                 $pos = mb_stripos($m->title, $term);
                 $results[] = [

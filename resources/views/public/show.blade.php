@@ -1,15 +1,18 @@
 @extends('public.layouts.app')
 @section('title', $item->seo_title ?: $item->title)
 @section('description', \Illuminate\Support\Str::limit(strip_tags((string) ($item->meta_description ?: ($item->summary ?: $item->title))), 160))
-@section('image', $item->cover_image_key ? \App\Support\R2::url($item->cover_image_key) : '')
+@section('image', \App\Support\Linked::coverUrl($item) ?? '')
 @section('content')
 @php
     $shareUrl = urlencode(url()->current());
     $shareText = urlencode($item->title);
-    $cover = $item->cover_image_key ? \App\Support\R2::url($item->cover_image_key) : null;
+    $cover = \App\Support\Linked::coverUrl($item);
+    $links = $item->mediaLinks;
+    $gallery = $links->where('role', 'gallery');
+    $linkedVideos = $links->where('role', 'video');
+    $documents = $links->where('role', 'document');
 @endphp
 <div class="container py-4 py-lg-5">
-
     <div class="row g-4">
         <div class="col-12 col-lg-8">
             <div class="mb-2">
@@ -65,10 +68,39 @@
                     @php $v = $item->{$f[0]}; @endphp
                     @if ($f[2] === 'textarea' && filled($v))
                         @if ($f[0] !== 'content')<h2 class="h4 mt-4">{{ $f[1] }}</h2>@endif
-                        <p>{!! nl2br(e($v)) !!}</p>
+                        <div class="rte-content">{!! \App\Support\Html::render($v) !!}</div>
                     @endif
                 @endforeach
             </div>
+
+            @if ($gallery->isNotEmpty())
+                <h2 class="h4 mt-4">Photo gallery</h2>
+                <div class="row g-2">
+                    @foreach ($gallery as $g)
+                        <div class="col-6 col-md-4">
+                            <button type="button" class="photo-open js-photo rounded overflow-hidden" data-full="{{ $g->media->url }}" data-title="{{ $g->caption ?: $g->media->original_name }}" data-type="{{ $res }}" data-id="{{ $item->id }}" aria-label="Open photo"><img src="{{ $g->media->url }}" alt="{{ $g->caption ?: $g->media->original_name }}" loading="lazy" style="height:160px"></button>
+                            @if ($g->caption)<div class="small text-muted">{{ $g->caption }}</div>@endif
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            @if ($linkedVideos->isNotEmpty())
+                <h2 class="h4 mt-4">Related videos</h2>
+                @foreach ($linkedVideos as $v)
+                    <video class="video-box rounded mb-1" controls preload="none" playsinline src="{{ $v->media->url }}"></video>
+                    @if ($v->caption)<div class="small text-muted mb-3">{{ $v->caption }}</div>@endif
+                @endforeach
+            @endif
+
+            @if ($documents->isNotEmpty())
+                <h2 class="h4 mt-4">Documents</h2>
+                <div class="list-group">
+                    @foreach ($documents as $d)
+                        <a class="list-group-item list-group-item-action" href="{{ $d->media->url }}" target="_blank" rel="noopener noreferrer"><i class="bi bi-file-earmark-pdf text-danger"></i> {{ $d->caption ?: $d->media->original_name }}</a>
+                    @endforeach
+                </div>
+            @endif
 
             <div class="d-flex align-items-center gap-2 mt-4">
                 <span class="small text-muted">Share</span>

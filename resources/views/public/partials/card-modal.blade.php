@@ -9,6 +9,7 @@
             <div class="modal-footer d-block">
                 <div id="cmNote" class="small text-primary mb-2 d-none"></div>
                 <div class="row g-2">
+                    <div class="col-12"><input type="text" id="cmName" class="form-control" placeholder="Enter your name" maxlength="80" aria-label="Enter your name" autocomplete="name"></div>
                     <div class="col-12"><textarea id="cmBody" rows="2" class="form-control" placeholder="Write a comment" maxlength="1500" aria-label="Comment"></textarea></div>
                 </div>
                 <div class="d-flex align-items-center gap-2 mt-2">
@@ -119,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!current) { return; }
     msg.textContent = '';
     var payload = {
+      name: document.getElementById("cmName").value,
       body: document.getElementById('cmBody').value,
       parent_id: current.parent ? parseInt(current.parent, 10) : null
     };

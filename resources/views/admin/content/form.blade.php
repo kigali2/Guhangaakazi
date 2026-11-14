@@ -87,7 +87,7 @@
                 <div class="mb-3">
                     <label class="form-label" for="f_{{ $name }}">{{ $label }}</label>
                     @if ($type === 'textarea')
-                        <textarea id="f_{{ $name }}" name="{{ $name }}" rows="5" class="form-control @error($name) is-invalid @enderror">{{ $val }}</textarea>
+                        <textarea id="f_{{ $name }}" name="{{ $name }}" rows="8" class="form-control rte @error($name) is-invalid @enderror">{{ \App\Support\Html::render($val) }}</textarea>
                     @elseif ($type === 'select')
                         <select id="f_{{ $name }}" name="{{ $name }}" class="form-select @error($name) is-invalid @enderror">
                             <option value="">Automatic (from dates)</option>

@@ -165,6 +165,7 @@ class ContentController extends Controller
     {
         $cfg = $this->cfg($res);
         $data = $request->validate($this->rules($cfg, $item?->id));
+        foreach ($cfg["fields"] as $f) { if ($f[2] === "textarea" && ! empty($data[$f[0]])) { $data[$f[0]] = \App\Support\Html::clean($data[$f[0]]); } }
 
         $cover = null;
         if (! empty($data['cover_image'])) {

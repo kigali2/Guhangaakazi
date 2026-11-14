@@ -82,7 +82,7 @@ class EngagementController extends Controller
     {
         $item = $this->item($type, $id);
         $data = $request->validate([
-            'name' => 'nullable|string|max:80',
+            'name' => 'required|string|min:2|max:80',
             'email' => 'nullable|email|max:150',
             'body' => 'required|string|min:2|max:1500',
             'parent_id' => 'nullable|integer',

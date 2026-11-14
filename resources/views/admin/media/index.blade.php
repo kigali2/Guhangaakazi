@@ -27,6 +27,7 @@
             <option value="">All</option>
             <option value="image" @selected(request('type') === 'image')>Images</option>
             <option value="video" @selected(request('type') === 'video')>Videos</option>
+            <option value="document" @selected(request('type') === 'document')>Documents</option>
         </select>
     </div>
     <div class="col-12 col-md-2"><button class="btn btn-outline-primary w-100">Filter</button></div>
@@ -38,8 +39,10 @@
             <div class="card h-100 border-0 shadow-sm">
                 @if ($m->type === 'image')
                     <img src="{{ $m->url }}" alt="{{ $m->original_name }}" loading="lazy" class="card-img-top" style="height:150px;object-fit:cover">
-                @else
+                @elseif ($m->type === 'video')
                     <video src="{{ $m->url }}" preload="none" controls class="card-img-top" style="height:150px;background:#000"></video>
+                @else
+                    <div class="d-flex align-items-center justify-content-center bg-light text-muted fw-semibold" style="height:150px">PDF</div>
                 @endif
                 <div class="card-body p-2">
                     <div class="small text-truncate">{{ $m->original_name }}</div>

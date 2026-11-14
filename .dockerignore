@@ -1,0 +1,10 @@
+.git
+.github
+node_modules
+vendor
+.env
+.env.testing
+public/build
+public/hot
+storage/logs/*
+tests

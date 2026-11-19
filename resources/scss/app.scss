@@ -96,3 +96,23 @@ $warning: #e8a317;
 .media-pick input { position: absolute; opacity: 0; pointer-events: none; }
 .media-pick .mp-thumb { display: flex; align-items: center; justify-content: center; width: 100%; height: 90px; object-fit: cover; font-weight: 600; color: #6c757d; }
 .search-overlay, .hero-overlay, .hero-text, .hero .carousel, .hero .carousel-inner, .hero .carousel-item, .embed-open img, .play-badge { top: 0; right: 0; bottom: 0; left: 0; }
+
+@media (min-width: 992px) {
+    .admin-sidebar.offcanvas-lg {
+        position: sticky !important;
+        top: 0;
+        align-self: flex-start;
+        flex: 0 0 270px;
+        width: 270px !important;
+        height: 100vh !important;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        background-color: #0f1f3d !important;
+        visibility: visible !important;
+    }
+    .admin-sidebar.offcanvas-lg .offcanvas-body {
+        flex-grow: 1;
+        overflow-y: visible;
+    }
+}
